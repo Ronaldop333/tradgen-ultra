@@ -1,0 +1,69 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+
+export default function Header() {
+  return (
+    <motion.header 
+      className="fixed top-0 left-0 right-0 z-50 bg-deep-space/80 backdrop-blur-md border-b border-cyber-blue/20"
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
+      <nav className="container mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Link href="/" className="flex items-center space-x-2">
+              <div className="w-3 h-3 bg-cyber-blue rounded-full glow-text"></div>
+              <span className="text-xl font-tech font-bold bg-gradient-to-r from-cyber-blue to-matrix-green bg-clip-text text-transparent">
+                TRADGEN
+              </span>
+            </Link>
+          </motion.div>
+
+          {/* Menu */}
+          <div className="hidden md:flex items-center space-x-8">
+            {['Home', 'Products', 'About', 'Contact'].map((item) => (
+              <motion.div
+                key={item}
+                whileHover={{ y: -2 }}
+                whileTap={{ y: 0 }}
+              >
+                <Link 
+                  href={`/${item.toLowerCase()}`}
+                  className="text-gray-300 hover:text-cyber-blue transition-colors duration-300 font-tech text-sm"
+                >
+                  {item}
+                </Link>
+              </motion.div>
+            ))}
+            
+            {/* CTA Button */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-gradient-to-r from-cyber-blue to-matrix-green text-deep-space px-6 py-2 rounded-lg font-tech font-bold text-sm hover:shadow-lg hover:shadow-cyber-blue/30 transition-all duration-300"
+            >
+              LAUNCH APP
+            </motion.button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <motion.button 
+            className="md:hidden flex flex-col space-y-1"
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className="w-6 h-0.5 bg-cyber-blue"></span>
+            <span className="w-6 h-0.5 bg-cyber-blue"></span>
+            <span className="w-6 h-0.5 bg-cyber-blue"></span>
+          </motion.button>
+        </div>
+      </nav>
+    </motion.header>
+  )
+}
