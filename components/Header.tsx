@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
 
 export default function Header() {
   return (
@@ -14,22 +13,14 @@ export default function Header() {
     >
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo - Apenas Texto */}
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Link href="/" className="flex items-center space-x-3">
-              <div className="relative w-10 h-10">
-                <Image
-                  src="/logo-tradgen.png"
-                  alt="TradGen Logo"
-                  fill
-                  className="object-contain"
-                />
-              </div>
+            <Link href="/" className="flex items-center">
               <div className="flex flex-col">
-                <span className="text-xl font-tech font-bold">
+                <span className="text-2xl font-tech font-bold">
                   <span className="text-cyber-blue">TRAD</span>
                   <span className="text-matrix-green">GEN</span>
                 </span>
