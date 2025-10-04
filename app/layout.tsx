@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Orbitron } from 'next/font/google'
 import './globals.css'
+import Header from '../components/Header'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -25,7 +26,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${inter.variable} ${orbitron.variable}`}>
       <body className="bg-deep-space text-white font-base">
-        {children}
+        <Header />
+        <main className="pt-20"> {/* Espaço para o header fixo */}
+          {children}
+        </main>
       </body>
     </html>
   )
