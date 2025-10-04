@@ -24,13 +24,7 @@ export default function SpaceTimeGrid() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    // Configurar canvas
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-      initGrid()
-    }
-
+    // DEFINIR initGrid PRIMEIRO
     const initGrid = () => {
       pointsRef.current = []
       const spacing = 40
@@ -52,6 +46,13 @@ export default function SpaceTimeGrid() {
       }
     }
 
+    // DEPOIS resizeCanvas
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+      initGrid() // Agora initGrid já está definido
+    }
+
     // Mouse move
     const handleMouseMove = (event: MouseEvent) => {
       mouseRef.current.x = event.clientX
@@ -68,7 +69,6 @@ export default function SpaceTimeGrid() {
       const points = pointsRef.current
       const mouse = mouseRef.current
 
-      // Verificar se points existe
       if (!points.length) return
 
       for (let y = 0; y < points.length; y++) {
@@ -99,11 +99,9 @@ export default function SpaceTimeGrid() {
         }
       }
 
-      // Desenhar grid
       ctx.strokeStyle = 'rgba(0, 240, 255, 0.3)'
       ctx.lineWidth = 0.5
 
-      // Linhas horizontais
       for (let y = 0; y < points.length; y++) {
         ctx.beginPath()
         for (let x = 0; x < points[y].length; x++) {
@@ -116,7 +114,6 @@ export default function SpaceTimeGrid() {
         ctx.stroke()
       }
 
-      // Linhas verticais
       if (points[0]) {
         for (let x = 0; x < points[0].length; x++) {
           ctx.beginPath()
@@ -131,7 +128,6 @@ export default function SpaceTimeGrid() {
         }
       }
 
-      // Pontos
       ctx.fillStyle = '#00f0ff'
       for (let y = 0; y < points.length; y++) {
         for (let x = 0; x < points[y].length; x++) {
@@ -151,7 +147,6 @@ export default function SpaceTimeGrid() {
     window.addEventListener('mousemove', handleMouseMove)
     animate()
 
-    // Cleanup
     return () => {
       window.removeEventListener('resize', resizeCanvas)
       window.removeEventListener('mousemove', handleMouseMove)
