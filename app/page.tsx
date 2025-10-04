@@ -5,11 +5,11 @@ import Image from 'next/image'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-dark grid-bg">
+    <div className="min-h-screen bg-deep-space grid-bg">
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
         {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-cyber-blue/5 to-neon-purple/3"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-cyber-blue/10 to-neon-purple/5"></div>
 
         {/* Content */}
         <motion.div 
@@ -65,7 +65,7 @@ export default function Home() {
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-cyber-blue to-matrix-green text-gray-dark px-8 py-4 rounded-lg font-tech font-bold text-lg hover:shadow-lg hover:shadow-cyber-blue/30 transition-all duration-300"
+              className="bg-gradient-to-r from-cyber-blue to-matrix-green text-deep-space px-8 py-4 rounded-lg font-tech font-bold text-lg hover:shadow-lg hover:shadow-cyber-blue/30 transition-all duration-300"
             >
               LAUNCH TERMINAL
             </motion.button>
