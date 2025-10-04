@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Header() {
   return (
@@ -18,8 +19,15 @@ export default function Header() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-cyber-blue rounded-full glow-text"></div>
+            <Link href="/" className="flex items-center space-x-3">
+              <div className="relative w-10 h-10">
+                <Image
+                  src="/logo-tradgen.png"
+                  alt="TradGen Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
               <span className="text-xl font-tech font-bold bg-gradient-to-r from-cyber-blue to-matrix-green bg-clip-text text-transparent">
                 TRADGEN
               </span>
