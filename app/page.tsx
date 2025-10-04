@@ -1,11 +1,10 @@
-
 'use client'
 
 import { motion } from 'framer-motion'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-deep-space">
+    <div className="min-h-screen bg-deep-space">
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
         {/* Background Effects */}
@@ -16,7 +15,7 @@ export default function Home() {
 
         {/* Content */}
         <motion.div 
-          className="text-center z-10"
+          className="text-center z-10 px-6"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
@@ -45,10 +44,23 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.8 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <button className="bg-gradient-to-r from-cyber-blue to-matrix-green text-deep-space px-8 py-4 rounded-lg font-tech font-bold text-lg hover:scale-105 transition-transform duration-300">
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-gradient-to-r from-cyber-blue to-matrix-green text-deep-space px-8 py-4 rounded-lg font-tech font-bold text-lg hover:shadow-lg hover:shadow-cyber-blue/30 transition-all duration-300"
+            >
               LAUNCH TERMINAL
-            </button>
+            </motion.button>
+            
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="border border-cyber-blue text-cyber-blue px-8 py-4 rounded-lg font-tech font-bold text-lg hover:bg-cyber-blue/10 transition-all duration-300"
+            >
+              VIEW DEMO
+            </motion.button>
           </motion.div>
         </motion.div>
 
@@ -64,6 +76,6 @@ export default function Home() {
           transition={{ duration: 2, repeat: Infinity, delay: 1 }}
         />
       </section>
-    </main>
+    </div>
   )
 }
