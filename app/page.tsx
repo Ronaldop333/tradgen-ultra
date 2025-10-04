@@ -2,64 +2,83 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import ParticleBackground from '../components/ParticleBackground'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-deep-space grid-bg">
+    <div className="min-h-screen bg-deep-space overflow-hidden">
+      {/* Particle Background */}
+      <ParticleBackground />
+      
+      {/* Grid Background */}
+      <div className="fixed inset-0 bg-[linear-gradient(rgba(0,240,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,240,255,0.1)_1px,transparent_1px)] bg-[size:50px_50px] z-0"></div>
+
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      <section className="min-h-screen flex items-center justify-center relative z-10">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-br from-cyber-blue/10 to-neon-purple/5"></div>
 
         {/* Content */}
         <motion.div 
-          className="text-center z-10 px-6"
+          className="text-center px-6"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          {/* Logo */}
+          {/* Logo Grande */}
           <motion.div
             className="flex justify-center mb-8"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1, duration: 0.8 }}
           >
-            <div className="relative w-20 h-20">
+            <div className="relative w-32 h-32 md:w-40 md:h-40">
               <Image
                 src="/logo-tradgen.png"
                 alt="TradGen Logo"
                 fill
                 className="object-contain"
+                priority
               />
             </div>
           </motion.div>
 
-          <motion.h1 
-            className="text-6xl md:text-8xl font-tech font-bold mb-6"
+          {/* TradGen Text */}
+          <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
+            className="mb-6"
           >
-            <span className="bg-gradient-to-r from-cyber-blue to-matrix-green bg-clip-text text-transparent">
-              <span className="text-cyber-blue">T</span>rad
-              <span className="text-matrix-green">G</span>en
-            </span>
-          </motion.h1>
+            <h1 className="text-7xl md:text-9xl font-tech font-bold">
+              <span className="bg-gradient-to-r from-cyber-blue to-matrix-green bg-clip-text text-transparent">
+                <span className="text-cyber-blue">T</span>RAD
+                <span className="text-matrix-green">G</span>EN
+              </span>
+            </h1>
+            <motion.p 
+              className="text-lg md:text-xl text-cyber-blue font-tech mt-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+            >
+              QUANTUM TRADING TECHNOLOGY
+            </motion.p>
+          </motion.div>
           
           <motion.p 
             className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
           >
-            Quantum Trading Technology powered by Neural Networks
+            Neural networks reinventing financial markets
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.9, duration: 0.8 }}
+            transition={{ delay: 1.0, duration: 0.8 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <motion.button 
@@ -79,18 +98,6 @@ export default function Home() {
             </motion.button>
           </motion.div>
         </motion.div>
-
-        {/* Floating Elements */}
-        <motion.div 
-          className="absolute top-1/4 left-1/4 w-2 h-2 bg-cyber-blue rounded-full glow-text"
-          animate={{ y: [0, -20, 0] }}
-          transition={{ duration: 3, repeat: Infinity }}
-        />
-        <motion.div 
-          className="absolute bottom-1/3 right-1/4 w-1 h-1 bg-matrix-green rounded-full"
-          animate={{ y: [0, 15, 0] }}
-          transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-        />
       </section>
     </div>
   )
