@@ -15,6 +15,7 @@ export default function SpaceTimeGrid() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const mouseRef = useRef({ x: 0, y: 0, radius: 150 })
   const pointsRef = useRef<Point[][]>([])
+  const animationRef = useRef<number>()
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -23,13 +24,12 @@ export default function SpaceTimeGrid() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
+    // Configurar canvas
     const resizeCanvas = () => {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
       initGrid()
     }
-    resizeCanvas()
-    window.addEventListener('resize', resizeCanvas)
 
     const initGrid = () => {
       pointsRef.current = []
@@ -52,18 +52,24 @@ export default function SpaceTimeGrid() {
       }
     }
 
+    // Mouse move
     const handleMouseMove = (event: MouseEvent) => {
       mouseRef.current.x = event.clientX
       mouseRef.current.y = event.clientY
     }
-    window.addEventListener('mousemove', handleMouseMove)
 
+    // Animação
     const animate = () => {
+      if (!ctx || !canvas) return
+
       ctx.fillStyle = 'rgba(10, 10, 18, 0.1)'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
       const points = pointsRef.current
       const mouse = mouseRef.current
+
+      // Verificar se points existe
+      if (!points.length) return
 
       for (let y = 0; y < points.length; y++) {
         for (let x = 0; x < points[y].length; x++) {
@@ -93,9 +99,11 @@ export default function SpaceTimeGrid() {
         }
       }
 
+      // Desenhar grid
       ctx.strokeStyle = 'rgba(0, 240, 255, 0.3)'
       ctx.lineWidth = 0.5
 
+      // Linhas horizontais
       for (let y = 0; y < points.length; y++) {
         ctx.beginPath()
         for (let x = 0; x < points[y].length; x++) {
@@ -108,18 +116,22 @@ export default function SpaceTimeGrid() {
         ctx.stroke()
       }
 
-      for (let x = 0; x < points[0].length; x++) {
-        ctx.beginPath()
-        for (let y = 0; y < points.length; y++) {
-          if (y === 0) {
-            ctx.moveTo(points[y][x].x, points[y][x].y)
-          } else {
-            ctx.lineTo(points[y][x].x, points[y][x].y)
+      // Linhas verticais
+      if (points[0]) {
+        for (let x = 0; x < points[0].length; x++) {
+          ctx.beginPath()
+          for (let y = 0; y < points.length; y++) {
+            if (y === 0) {
+              ctx.moveTo(points[y][x].x, points[y][x].y)
+            } else {
+              ctx.lineTo(points[y][x].x, points[y][x].y)
+            }
           }
+          ctx.stroke()
         }
-        ctx.stroke()
       }
 
+      // Pontos
       ctx.fillStyle = '#00f0ff'
       for (let y = 0; y < points.length; y++) {
         for (let x = 0; x < points[y].length; x++) {
@@ -130,15 +142,22 @@ export default function SpaceTimeGrid() {
         }
       }
 
-      requestAnimationFrame(animate)
+      animationRef.current = requestAnimationFrame(animate)
     }
 
-    initGrid()
+    // Inicializar
+    resizeCanvas()
+    window.addEventListener('resize', resizeCanvas)
+    window.addEventListener('mousemove', handleMouseMove)
     animate()
 
+    // Cleanup
     return () => {
       window.removeEventListener('resize', resizeCanvas)
       window.removeEventListener('mousemove', handleMouseMove)
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
     }
   }, [])
 
