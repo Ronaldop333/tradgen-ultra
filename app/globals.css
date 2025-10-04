@@ -1,1 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+:root {
+  --cyber-blue: #00f0ff;
+  --matrix-green: #00ff88;
+  --neon-purple: #8a2be2;
+  --electric-pink: #ff0080;
+  --deep-space: #0a0a12;
+  --neural-dark: #151522;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--deep-space);
+  color: white;
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Animações customizadas */
+@keyframes glow {
+  from { text-shadow: 0 0 10px var(--cyber-blue); }
+  to { text-shadow: 0 0 20px var(--cyber-blue), 0 0 30px var(--neon-purple); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.glow-text {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.float-element {
+  animation: float 3s ease-in-out infinite;
+}
