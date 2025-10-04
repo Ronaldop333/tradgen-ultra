@@ -99,8 +99,9 @@ export default function SpaceTimeGrid() {
         }
       }
 
-      ctx.strokeStyle = 'rgba(0, 240, 255, 0.3)'
-      ctx.lineWidth = 0.5
+      // COR ORIGINAL mantida - apenas espessura reduzida
+      ctx.strokeStyle = 'rgba(0, 240, 255, 0.3)' // ✅ Cor original
+      ctx.lineWidth = 0.2 // ✅ Linha mais fina
 
       for (let y = 0; y < points.length; y++) {
         ctx.beginPath()
@@ -133,7 +134,7 @@ export default function SpaceTimeGrid() {
         for (let x = 0; x < points[y].length; x++) {
           const point = points[y][x]
           ctx.beginPath()
-          ctx.arc(point.x, point.y, 1, 0, Math.PI * 2)
+          ctx.arc(point.x, point.y, 0.5, 0, Math.PI * 2) // ✅ Pontos menores
           ctx.fill()
         }
       }
