@@ -7,7 +7,7 @@ import Image from 'next/image'
 export default function Header() {
   return (
     <motion.header 
-      className="fixed top-0 left-0 right-0 z-50 bg-deep-space/80 backdrop-blur-md border-b border-cyber-blue/20"
+      className="fixed top-0 left-0 right-0 z-50 bg-gray-dark/80 backdrop-blur-md border-b border-gray-border"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
@@ -28,9 +28,15 @@ export default function Header() {
                   className="object-contain"
                 />
               </div>
-              <span className="text-xl font-tech font-bold bg-gradient-to-r from-cyber-blue to-matrix-green bg-clip-text text-transparent">
-                TRADGEN
-              </span>
+              <div className="flex flex-col">
+                <span className="text-xl font-tech font-bold">
+                  <span className="text-cyber-blue">TRAD</span>
+                  <span className="text-matrix-green">GEN</span>
+                </span>
+                <span className="text-xs text-gray-400 font-base -mt-1">
+                  QUANTUM TRADING
+                </span>
+              </div>
             </Link>
           </motion.div>
 
@@ -55,7 +61,7 @@ export default function Header() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-cyber-blue to-matrix-green text-deep-space px-6 py-2 rounded-lg font-tech font-bold text-sm hover:shadow-lg hover:shadow-cyber-blue/30 transition-all duration-300"
+              className="bg-gradient-to-r from-cyber-blue to-matrix-green text-gray-dark px-6 py-2 rounded-lg font-tech font-bold text-sm hover:shadow-lg hover:shadow-cyber-blue/30 transition-all duration-300"
             >
               LAUNCH APP
             </motion.button>
