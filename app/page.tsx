@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -17,14 +18,32 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
+          {/* Logo */}
+          <motion.div
+            className="flex justify-center mb-8"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.1, duration: 0.8 }}
+          >
+            <div className="relative w-20 h-20">
+              <Image
+                src="/logo-tradgen.png"
+                alt="TradGen Logo"
+                fill
+                className="object-contain"
+              />
+            </div>
+          </motion.div>
+
           <motion.h1 
             className="text-6xl md:text-8xl font-tech font-bold mb-6"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
           >
             <span className="bg-gradient-to-r from-cyber-blue to-matrix-green bg-clip-text text-transparent">
-              TRADGEN
+              <span className="text-cyber-blue">T</span>rad
+              <span className="text-matrix-green">G</span>en
             </span>
           </motion.h1>
           
@@ -32,7 +51,7 @@ export default function Home() {
             className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
           >
             Quantum Trading Technology powered by Neural Networks
           </motion.p>
@@ -40,7 +59,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
+            transition={{ delay: 0.9, duration: 0.8 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <motion.button 
