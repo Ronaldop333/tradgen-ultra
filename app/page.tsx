@@ -2,17 +2,14 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import ParticleBackground from '../components/ParticleBackground'
+import SpaceTimeGrid from '../components/SpaceTimeGrid'
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-deep-space overflow-hidden">
-      {/* Particle Background */}
-      <ParticleBackground />
+      {/* Space Time Grid */}
+      <SpaceTimeGrid />
       
-      {/* Grid Background */}
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(0,240,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,240,255,0.1)_1px,transparent_1px)] bg-[size:50px_50px] z-0"></div>
-
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center relative z-10">
         {/* Background Effects */}
